@@ -1,12 +1,12 @@
 #include <string>
 #include <vector>
-#include <set>
+#include <unordered_set>
 #include <iostream>
 using namespace std;
 
 int solution(vector<int> elements) {
     int answer = 0;
-    set<int> results;
+    unordered_set<int> results;
     int all_sum = 0;
     for (auto e : elements)
         all_sum += e;
