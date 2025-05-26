@@ -11,7 +11,7 @@ bool compare(vector<int> a, vector<int> b)
     return true;
 }
 
-void solve(int i, int count, vector<bool>& visit, vector<vector<int>>& routes)
+void solve(int i, int count, vector<vector<int>>& routes)
 {
     if (i >= routes.size())
     {
@@ -19,23 +19,20 @@ void solve(int i, int count, vector<bool>& visit, vector<vector<int>>& routes)
         return;
     }
     
-    visit[i] = true;
     int start;
     for (start = i + 1; start < routes.size(); start++)
     {
         if (routes[start][0] > routes[i][1] || routes[start][1] < routes[i][1]) break;
-        visit[start] = true;
     }
     
-    solve(start, count + 1, visit, routes);
+    solve(start, count + 1, routes);
 }
 
 int solution(vector<vector<int>> routes) {
     int answer = 0;
     
     sort(routes.begin(), routes.end(), compare);
-    vector<bool> visit(routes.size(), false);
-    solve(0, 0, visit, routes);
+    solve(0, 0, routes);
     
     answer = result;
     return answer;
