@@ -16,7 +16,6 @@ int solution(vector<int> cookie) {
         int r_count = cookie[r];
         while(true)
         {
-            //cout << l_count << ":" << r_count << " / ";
             if (l_count == r_count) answer = max(answer, l_count);
             
             if (l_count <= r_count && l > 0) 
@@ -31,7 +30,6 @@ int solution(vector<int> cookie) {
             }
             else break;
         }
-        //cout << endl;
     }
     
     return answer;
