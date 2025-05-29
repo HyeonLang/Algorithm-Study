@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <queue>
 #include <iostream>
 
@@ -17,15 +17,11 @@ struct GenreInfo
     }
 };
 
-void compare_vec()
-{
-    
-}
 
 vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
     
-    map<string, GenreInfo> songs;
+    unordered_map<string, GenreInfo> songs;
     for (int i = 0; i < genres.size(); i++)
     {
         songs[genres[i]].plays_count += plays[i];
