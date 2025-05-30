@@ -36,10 +36,10 @@ void solve(int cost, const int& height, priority_queue<vector<int>>& pq,deque<ve
         if (!IsValidIndex2D(next_x, next_y, land.size())) continue;
         if (visited[next_x][next_y]) continue;
             
-        int cell_cost = abs(land[cell[0]][cell[1]] - land[next_x][next_y]);
-        if (cell_cost <= height) cell_cost = 0;
+        int move_cost = abs(land[cell[0]][cell[1]] - land[next_x][next_y]);
+        if (move_cost <= height) move_cost = 0;
             
-        pq.push({(-1 * cell_cost), next_x, next_y});
+        pq.push({(-1 * move_cost), next_x, next_y});
             
     }
     
@@ -50,9 +50,7 @@ void solve(int cost, const int& height, priority_queue<vector<int>>& pq,deque<ve
         pq.pop();
         if (!visited[top[1]][top[2]]) break;
     }
-    
-    //cout << "(" <<top[2] + 1 << "," << top[1] + 1 << " : " << top[0] << ") ";
-    
+        
     visited[top[1]][top[2]] = true;
     connected.push_front({top[1], top[2]});
     solve(cost + (-1 * top[0]), height, pq, connected, land, visited);
@@ -62,10 +60,13 @@ void solve(int cost, const int& height, priority_queue<vector<int>>& pq,deque<ve
 int solution(vector<vector<int>> land, int height) {
     int answer = 0;
     vector<vector<bool>> visited(land.size(), vector<bool>(land.size(), false));     deque<vector<int>> connected;
+    priority_queue<vector<int>> pq;
+    
     connected.push_front({0, 0});
     visited[0][0] = true;
-    priority_queue<vector<int>> pq;
+    
     solve(0, height, pq, connected, land, visited);
     answer = result;
+    
     return answer;
 }
