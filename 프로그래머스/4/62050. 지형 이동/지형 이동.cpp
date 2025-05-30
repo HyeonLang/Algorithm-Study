@@ -22,8 +22,7 @@ void solve(int cost, const int& height, priority_queue<vector<int>>& pq,deque<ve
 {
     if (connected.size() == land.size() * land.size())
     {
-        if (result == -1) result = cost;
-        else result = min(result, cost);
+        result = cost;
         return;
     }
     
