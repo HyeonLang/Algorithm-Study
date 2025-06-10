@@ -7,7 +7,7 @@ using namespace std;
 int solution(vector<vector<int>> board, vector<vector<int>> skill) {
     int answer = 0;
     
-    vector<vector<int>> skill_board(board.size(), vector<int>(board[0].size() , 0));
+    vector<vector<int>> skill_board(board.size() + 1, vector<int>(board[0].size() + 1 , 0));
     
     for (auto s : skill)
     {
@@ -19,14 +19,10 @@ int solution(vector<vector<int>> board, vector<vector<int>> skill) {
         int degree = s[5];
         
         skill_board[r1][c1] += (type == 1) ? -1 * degree : degree;
-        if (r2 < skill_board.size() - 1)
-            skill_board[r2 + 1][c1] -= (type == 1) ? -1 * degree : degree;
-        
-        if (c2 == skill_board[0].size() - 1) continue;
+        skill_board[r2 + 1][c1] -= (type == 1) ? -1 * degree : degree;
         
         skill_board[r1][c2 + 1] -= (type == 1) ? -1 * degree : degree;
-        if (r2 < skill_board.size() - 1)
-            skill_board[r2 + 1][c2 + 1] += (type == 1) ? -1 * degree : degree;   
+        skill_board[r2 + 1][c2 + 1] += (type == 1) ? -1 * degree : degree;   
     }
     
     
