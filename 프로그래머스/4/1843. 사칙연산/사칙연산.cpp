@@ -41,10 +41,9 @@ int solution(vector<string> arr)
                     dp[i][i + gap][0] = min(dp[i][i + gap][0], dp[i][k][0] - dp[k + 1][i + gap][1]); 
                 }
             }
-            //cout << "("<<dp[i][i + gap][1] << ", " << dp[i][i + gap][0] << ") "; 
         }
-        //cout << endl;
     }
+    
     answer = dp[0][arr.size() / 2][1];
     return answer;
 }
